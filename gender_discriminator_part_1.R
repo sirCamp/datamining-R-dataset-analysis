@@ -34,3 +34,17 @@ coef(modello)
 modello2 <- lm(Salary ~ Gender * Experience, data=dati)
 
 summary(modello2)
+
+coeff <- coef(modello2)
+abline(coeff[1],coeff[3],col='pink',lwd=3,lty=2)
+abline(coeff[1]+coeff[2],coeff[3]+coeff[4],col='blue',lwd=3,lty=2)
+
+#previsione maschio con 25 anni di esp
+coeff[1]+coeff[2]+coeff[3]*25+coeff[4]*25
+#previsione donna conn 25 anni di esperienza
+coeff[1]+coeff[3]*25
+
+#comando autimatico
+predict(modello2,	newdata=data.frame(list(Gender='Male',	Experience=25)))
+predict(modello2,	newdata=data.frame(list(Gender='Female',	Experience=25)))
+
